@@ -1,2 +1,2 @@
 # language_detection_app
-Simple language detection app using FastAPI and Docker
+Simple language detection app using FastAPI and Docker.
