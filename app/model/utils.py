@@ -19,7 +19,10 @@ def predict_model(text):
     '''Predict the text language using the trained pipeline'''
     
     text = re.sub(r'[!@#$(),\n"%^*?\:;~`0-9]', " ", text)
+    text = re.sub(r"\s+", " ", text)
     text = text.lower()
+
     pred = model.predict([text])
-    
-    return classes[pred[0]]
+    out = classes[pred[0]]
+
+    return out
