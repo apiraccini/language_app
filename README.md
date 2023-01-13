@@ -1,2 +1,2 @@
-# language_detection_app
-Simple language detection app using FastAPI and Docker.
+# language_app
+Simple language app (language detection and offensive english classification) using FastAPI, Docker and Heroku.
