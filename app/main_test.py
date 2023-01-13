@@ -1,16 +1,28 @@
 from fastapi.testclient import TestClient
 from main import app
 
+# test client
 client = TestClient(app)
 
-test_input = {'text': 'Ciao bella'}
-test_expected = {'language': 'Italian'}
+# define test inputs and expected outputs
+input1 = {'text': 'Ciao bella'}
+expected1 = 'Italian'
 
-def test_main(input, expected):
-    response = client.post("/predict", json=input)
+input2 = {'text': 'Dirty little fucker'}
+expected2 = 'Offensive'
+
+def test_main():
+
+    response = client.post('/predict_language', json=input1)
     assert response.status_code == 200
-    assert response.json() == expected
+    assert response.json()['classification'] == expected1
+    print('Language detection OK')
+
+    response = client.post('/predict_offensive', json=input2)
+    assert response.status_code == 200
+    assert response.json()['classification'] == expected2
+    print('Offensive english classification OK')
 
 if __name__ == '__main__':
-    test_main(test_input, test_expected)
-    print('Test passed!')
+    test_main()
+    print('Both tests passed!')
